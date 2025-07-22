@@ -4,558 +4,281 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfair Shanghai - AI Utilization Infographic</title>
+    
+    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .h-chart-sm { height: 200px; max-height: 200px; }
-        .h-chart-md { height: 250px; max-height: 250px; }
-        .h-chart-lg { height: 300px; max-height: 300px; }
-
-        @media (min-width: 768px) {
-            .h-chart-sm { height: 220px; max-height: 220px; }
-            .h-chart-md { height: 300px; max-height: 300px; }
-            .h-chart-lg { height: 350px; max-height: 350px; }
-        }
         .card-gradient {
             background: linear-gradient(135deg, #7F187F, #92DA4D);
         }
+        /* Styles for the modal */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
+            display: none; /* Hidden by default */
         }
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            max-width: 800px;
-            width: 90%;
-            position: relative;
-        }
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-        }
-        .close-button:hover,
-        .close-button:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+        .modal.flex {
+            display: flex;
         }
     </style>
 </head>
 <body class="text-gray-800">
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="container mx-auto p-4 md:p-8 max-w-7xl">
-
+        <!-- Header -->
         <header class="text-center py-12">
             <h1 class="text-4xl md:text-6xl font-extrabold" style="color: #7F187F;">The AI Revolution at Wayfair Shanghai</h1>
-            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Insights from our 2025 Generative AI Utilization Survey reveal a workforce embracing innovation and transforming daily operations.</p>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Insights from our 2025 Generative AI Utilization Survey reveal a workforce embracing innovation.</p>
             <div class="mt-6 text-gray-500 text-sm md:text-base">
-                <p>Last Updated: <span id="lastUpdatedDate"></span> | Survey Takers: <span id="numSurveyTakers"></span></p>
+                <p>Last Updated: <span id="lastUpdatedDate"></span> | Survey Takers: 50</p>
             </div>
         </header>
 
         <main class="space-y-16">
-
-            <section id="adoption-pulse" class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <!-- Adoption Pulse Section -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                 <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
                     <h2 class="text-2xl font-bold mb-4 text-center">AI Usage Frequency</h2>
-                    <p class="text-gray-600 text-center mb-6">A significant majority of employees are integrating AI into their work routines on a daily basis, demonstrating rapid adoption.</p>
-                    <div class="chart-container h-chart-md max-w-md">
+                    <p class="text-gray-600 text-center mb-6">A significant majority of employees are integrating AI into their work routines daily.</p>
+                    <div class="h-64 max-w-md mx-auto">
                         <canvas id="frequencyChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-white rounded-lg shadow-lg p-6 text-center h-full flex flex-col justify-center">
                     <h2 class="text-2xl font-bold mb-4">Overall Sentiment</h2>
-                     <div class="text-8xl font-black" style="color: #92DA4D;">95%</div>
+                    <div class="text-8xl font-black" style="color: #92DA4D;">95%</div>
                     <p class="text-2xl font-bold mt-2">Positive</p>
-                    <p class="text-gray-600 mt-4">Employees feel optimistic and excited about embedding more AI into their work.</p>
+                    <p class="text-gray-600 mt-4">Employees are optimistic about embedding more AI into their work.</p>
                 </div>
             </section>
 
-            <section id="toolkit-and-use-cases" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Toolkit & Use Cases Section -->
+            <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <h2 class="text-3xl font-bold text-center mb-2">Our Go-To AI Toolkit</h2>
-                    <p class="text-gray-600 text-center max-w-3xl mx-auto mb-8">Popular tools driving productivity.</p>
-                    <div class="chart-container h-chart-lg max-w-full">
+                    <p class="text-gray-600 text-center mb-8">Popular tools driving productivity.</p>
+                    <div class="h-96">
                         <canvas id="toolsChart"></canvas>
                     </div>
                 </div>
-                
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <h2 class="text-3xl font-bold text-center mb-2">Top Use Cases for Generative AI</h2>
-                    <p class="text-gray-600 text-center max-w-3xl mx-auto mb-8">Diverse applications sparking innovation.</p>
-                    <div class="chart-container h-chart-lg max-w-full">
+                    <p class="text-gray-600 text-center mb-8">Diverse applications sparking innovation.</p>
+                    <div class="h-96">
                         <canvas id="useCasesChart"></canvas>
                     </div>
                 </div>
             </section>
 
-            <section id="departmental-insights">
+            <!-- Departmental Insights Section -->
+            <section>
                 <h2 class="text-3xl font-bold text-center mb-8">Departmental AI Focus: Unique Strengths</h2>
-                <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Each department is leveraging AI in ways that align with their core functions, showcasing diverse and specialized applications.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                        <div class="text-4xl mb-4" style="color: #7F187F;">&#128187;</div>
-                        <h3 class="text-xl font-bold mb-2">CM (Category Management)</h3>
-                        <p class="text-gray-600">CM teams are uniquely utilizing AI for complex data analysis, particularly for Looker calculations, and for generating supplier FAQs, streamlining product information management.</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                        <div class="text-4xl mb-4" style="color: #92DA4D;">&#128200;</div>
-                        <h3 class="text-xl font-bold mb-2">Desk/GPS (Global Partner Support)</h3>
-                        <p class="text-gray-600">Desk/GPS departments are focused on leveraging AI for knowledge retrieval via Glean, assisting new hires, and automating support processes through script generation (e.g., VBA).</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                        <div class="text-4xl mb-4" style="color: #FFC600;">&#128100;</div>
-                        <h3 class="text-xl font-bold mb-2">CG/CGF (Category Growth & Fulfillment)</h3>
-                        <p class="text-gray-600">CG/CGF teams are using AI to refine professional communication with suppliers and to efficiently code supplier information, enhancing partner relationships and data accuracy.</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                        <div class="text-4xl mb-4" style="color: #57C377;">&#128188;</div>
-                        <h3 class="text-xl font-bold mb-2">SAM (Supplier Account Management)</h3>
-                        <p class="text-gray-600">SAM is leveraging AI primarily for translation and initial analysis of survey data, aiming to gain quick insights and improve communication with their supplier base.</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                        <div class="text-4xl mb-4" style="color: #7F187F;">&#128227;</div>
-                        <h3 class="text-xl font-bold mb-2">ACQ (Acquisition)</h3>
-                        <p class="text-gray-600">ACQ stands out with its innovative use of AI to overcome language barriers, developing custom translation solutions to enhance cross-cultural communication in acquisition efforts.</p>
-                    </div>
-                     <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                        <div class="text-4xl mb-4" style="color: #92DA4D;">&#127911;</div>
-                        <h3 class="text-xl font-bold mb-2">HR/Academy</h3>
-                        <p class="text-gray-600">HR/Academy is exploring AI for creative applications like brainstorming and generating rough reference images for vendors, indicating a focus on content creation and ideation.</p>
-                    </div>
+                <div id="departmentalInsights" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Department cards will be injected here by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Success Stories Section -->
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8">AI in Action: Success Stories</h2>
+                <div id="successStories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Success story cards will be injected here by JavaScript -->
                 </div>
             </section>
 
-            <section id="success-stories">
-                 <h2 class="text-3xl font-bold text-center mb-8">AI in Action: Success Stories</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                        <div class="text-4xl mb-4" style="color: #7F187F;">&#128279;</div>
-                        <h3 class="text-xl font-bold mb-2">Automated Scripting</h3>
-                        <p class="text-gray-600 flex-grow mb-4" id="story1-text">Employees successfully used AI to generate custom Tamper Monkey and Excel VBA scripts, automating repetitive tasks and saving significant time on manual data processing.</p>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-auto" onclick="showStoryDetails('story1-text')">✨ Generate More Details</button>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                        <div class="text-4xl mb-4" style="color: #92DA4D;">&#127760;</div>
-                        <h3 class="text-xl font-bold mb-2">Cross-Cultural Communication</h3>
-                        <p class="text-gray-600 flex-grow mb-4" id="story2-text">A custom AI translator was built by compiling a glossary of Wayfair-specific terminology. This tool, powered by Glean and Gemini, overcomes language barriers and improves clarity in global communications.</p>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-auto" onclick="showStoryDetails('story2-text')">✨ Generate More Details</button>
-                    </div>
-                     <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                        <div class="text-4xl mb-4" style="color: #FFC600;">&#128202;</div>
-                        <h3 class="text-xl font-bold mb-2">Advanced Data Insights</h3>
-                        <p class="text-gray-600 flex-grow mb-4" id="story3-text">AI proved instrumental in formulating complex Looker calculations and queries. This enabled teams to extract deeper insights from business data and improve reporting accuracy.</p>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-auto" onclick="showStoryDetails('story3-text')">✨ Generate More Details</button>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                        <div class="text-4xl mb-4" style="color: #57C377;">&#128196;</div>
-                        <h3 class="text-xl font-bold mb-2">Email Summarization & Actionable Insights</h3>
-                        <p class="text-gray-600 flex-grow mb-4" id="story4-text">AI tools are efficiently summarizing lengthy email threads, highlighting key information and suggesting next steps, significantly streamlining communication workflows.</p>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-auto" onclick="showStoryDetails('story4-text')">✨ Generate More Details</button>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                        <div class="text-4xl mb-4" style="color: #7F187F;">&#128218;</div>
-                        <h3 class="text-xl font-bold mb-2">SOP Summarization & Writing Polish</h3>
-                        <p class="text-gray-600 flex-grow mb-4" id="story5-text">Gemini is being used to quickly summarize complex Standard Operating Procedures (SOPs) and to polish written communications, ensuring clarity and professionalism.</p>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-auto" onclick="showStoryDetails('story5-text')">✨ Generate More Details</button>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                        <div class="text-4xl mb-4" style="color: #92DA4D;">&#128269;</div>
-                        <h3 class="text-xl font-bold mb-2">Efficient Knowledge Retrieval</h3>
-                        <p class="text-gray-600 flex-grow mb-4" id="story6-text">Glean has proven highly effective for new hires to quickly find relevant information and documents, accelerating onboarding and access to best practices.</p>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-auto" onclick="showStoryDetails('story6-text')">✨ Generate More Details</button>
-                    </div>
-                </div>
-            </section>
-
-            <section id="opportunities">
+            <!-- Opportunities Section -->
+            <section>
                 <h2 class="text-3xl font-bold text-center mb-8">The Future is Now: Opportunities Ahead</h2>
-                <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Based on your feedback, we've identified key areas where AI can provide even greater support, moving from current challenges to innovative solutions.</p>
-                <div class="space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
-                        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
-                            <p>Time-consuming report & presentation creation.</p>
-                        </div>
-                        <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
-                        <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg">AI-Powered Solution</h4>
-                            <p>Automated generation of weekly reports and Google Slides drafts.</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
-                        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
-                            <p>Answering repetitive supplier and internal questions.</p>
-                        </div>
-                        <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
-                        <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg">AI-Powered Solution</h4>
-                            <p>An intelligent knowledge base that handles basic queries instantly.</p>
-                        </div>
-                    </div>
-                     <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
-                        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
-                            <p>Analyzing historical data to predict trends is complex and slow.</p>
-                        </div>
-                        <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
-                        <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg">AI-Powered Solution</h4>
-                            <p>AI models to identify supplier issues and summarize ad performance with visualizations.</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
-                        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
-                            <p>Manual processing of meeting minutes & general paperwork.</p>
-                        </div>
-                        <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
-                        <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg">AI-Powered Solution</h4>
-                            <p>AI-driven transcription and summarization of meetings, and efficient paperwork automation.</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
-                        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
-                            <p>Difficulty in tracking SOP changes and identifying conflicts.</p>
-                        </div>
-                        <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
-                        <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg">AI-Powered Solution</h4>
-                            <p>AI systems to monitor SOP updates, flag discrepancies, and ensure compliance.</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
-                        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
-                            <p>Complex navigation of Google Sheets and formulas.</p>
-                        </div>
-                        <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
-                        <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg">AI-Powered Solution</h4>
-                            <p>AI assistance for navigating spreadsheets and simplifying complex formula creation.</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
-                        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
-                            <p>Manual tracking and analysis of SUP data for performance.</p>
-                        </div>
-                        <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
-                        <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-lg">AI-Powered Solution</h4>
-                            <p>Automated pulling and analysis of SUP data for real-time performance tracking.</p>
-                        </div>
-                    </div>
+                <div id="opportunities" class="space-y-8">
+                    <!-- Opportunity rows will be injected here by JavaScript -->
                 </div>
             </section>
-
         </main>
 
+        <!-- Footer -->
         <footer class="text-center py-12 mt-16 border-t border-gray-200">
             <h2 class="text-2xl font-bold" style="color: #7F187F;">Pioneering the Future, Together</h2>
-            <p class="mt-2 text-gray-600">Thank you for driving innovation. Your engagement with AI is shaping a more efficient and intelligent future for Wayfair Shanghai.</p>
+            <p class="mt-2 text-gray-600">Thank you for driving innovation. Your engagement with AI is shaping a more efficient future for Wayfair Shanghai.</p>
         </footer>
-
     </div>
-
-    <div id="llmModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h3 class="text-2xl font-bold mb-4" id="modalTitle">Details</h3>
+    
+    <!-- Modal for "Generate More Details" -->
+    <div id="llmModal" class="modal fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-60">
+        <div class="bg-white rounded-lg shadow-xl p-6 m-4 max-w-2xl w-full relative" onclick="event.stopPropagation()">
+            <h3 id="modalTitle" class="text-2xl font-bold mb-4">Details</h3>
             <div id="modalContent" class="text-gray-700">
-                <p>Loading...</p>
+                <!-- Content will be injected here -->
             </div>
-            <div id="modalLoading" class="hidden text-center mt-4">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-                <p class="text-gray-600 mt-2">Generating insights...</p>
-            </div>
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
         </div>
     </div>
 
     <script>
-        const FONT_COLOR = '#374151';
-        const GRID_COLOR = '#e5e7eb';
-
+    // Wait for the DOM to be fully loaded before running scripts
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Constants & Config ---
         const WAYFAIR_PURPLE = '#7F187F';
         const WAYFAIR_LIGHT_GREEN = '#92DA4D';
         const WAYFAIR_YELLOW = '#FFC600';
         const WAYFAIR_GREEN = '#57C377';
+        const FONT_COLOR = '#374151';
 
-        function wrapText(str) {
-            const maxLength = 16;
-            if (typeof str !== 'string' || str.length <= maxLength) {
-                return str;
-            }
-            const words = str.split(' ');
-            const lines = [];
-            let currentLine = '';
-            for (const word of words) {
-                if ((currentLine + ' ' + word).trim().length > maxLength) {
-                    lines.push(currentLine.trim());
-                    currentLine = word;
-                } else {
-                    currentLine = (currentLine + ' ' + word).trim();
-                }
-            }
-            if (currentLine) {
-                lines.push(currentLine.trim());
-            }
-            return lines;
-        }
-
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            }
-            return label;
-        };
-        
         const SHARED_TOOLTIP_OPTIONS = {
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    },
-                    backgroundColor: '#ffffff',
-                    titleColor: '#374151',
-                    titleFont: { weight: 'bold', size: 14 },
-                    bodyColor: '#4b5563',
-                    borderColor: '#e5e7eb',
-                    borderWidth: 1,
-                    padding: 10,
-                    displayColors: true,
-                    boxPadding: 4,
-                    cornerRadius: 8,
-                }
-            }
+            backgroundColor: '#ffffff',
+            titleColor: FONT_COLOR,
+            titleFont: { weight: 'bold', size: 14 },
+            bodyColor: '#4b5563',
+            borderColor: '#e5e7eb',
+            borderWidth: 1,
+            padding: 10,
+            displayColors: true,
+            boxPadding: 4,
+            cornerRadius: 8,
         };
 
+        // --- Chart Data ---
         const frequencyData = {
-            labels: ['Daily', 'Few Times a Week', 'Few Times a Month'],
-            datasets: [{
-                label: 'Usage Frequency',
-                data: [80, 15, 5],
-                backgroundColor: [WAYFAIR_PURPLE, WAYFAIR_LIGHT_GREEN, WAYFAIR_YELLOW],
-                borderColor: '#ffffff',
-                borderWidth: 4,
-                hoverOffset: 8
-            }]
+            labels: ['Daily', 'A few times a week', 'A few times a month'],
+            datasets: [{ data: [34, 12, 3], backgroundColor: [WAYFAIR_PURPLE, WAYFAIR_LIGHT_GREEN, WAYFAIR_YELLOW], borderColor: '#ffffff', borderWidth: 4, hoverOffset: 8 }]
         };
-        new Chart(document.getElementById('frequencyChart'), {
-            type: 'doughnut',
-            data: frequencyData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    ...SHARED_TOOLTIP_OPTIONS.plugins,
-                    legend: {
-                        position: 'bottom',
-                        labels: { color: FONT_COLOR, font: { size: 14 } }
-                    }
-                },
-                cutout: '60%'
-            }
-        });
-
         const toolsData = {
-            labels: ['ChatGPT', 'Gemini', 'Glean', 'Deepseek', 'Others (Kimi, Copilot, etc.)'].map(wrapText),
-            datasets: [{
-                label: 'Tool Mentions in Survey',
-                data: [15, 15, 12, 3, 4],
-                backgroundColor: [WAYFAIR_PURPLE, WAYFAIR_LIGHT_GREEN, WAYFAIR_YELLOW, WAYFAIR_GREEN, WAYFAIR_PURPLE],
-                borderColor: [WAYFAIR_PURPLE, WAYFAIR_LIGHT_GREEN, WAYFAIR_YELLOW, WAYFAIR_GREEN, WAYFAIR_PURPLE],
-                borderWidth: 1,
-                borderRadius: 8,
-                barThickness: 'flex',
-                maxBarThickness: 50,
-            }]
+            labels: ['ChatGPT', 'Gemini', 'Glean', 'Deepseek', 'Other'],
+            datasets: [{ label: 'Mentions', data: [22, 22, 18, 4, 6], backgroundColor: [WAYFAIR_PURPLE, WAYFAIR_LIGHT_GREEN, WAYFAIR_YELLOW, WAYFAIR_GREEN, '#A020F0'], borderWidth: 1, borderRadius: 8 }]
         };
-        new Chart(document.getElementById('toolsChart'), {
-            type: 'bar',
-            data: toolsData,
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        grid: { color: GRID_COLOR },
-                        ticks: { color: FONT_COLOR, font: { size: 12 } }
-                    },
-                    y: {
-                        grid: { display: false },
-                        ticks: { color: FONT_COLOR, font: { size: 14 } }
-                    }
-                },
-                plugins: {
-                     ...SHARED_TOOLTIP_OPTIONS.plugins,
-                    legend: { display: false }
-                }
-            }
-        });
-
         const useCasesData = {
-            labels: ['Translation', 'Brainstorming', 'Data Analysis', 'Customer Comms', 'Writing & Code'],
-            datasets: [{
-                label: 'Use Case Popularity',
-                data: [17, 9, 8, 7, 6],
-                backgroundColor: `rgba(${parseInt(WAYFAIR_PURPLE.slice(1,3), 16)}, ${parseInt(WAYFAIR_PURPLE.slice(3,5), 16)}, ${parseInt(WAYFAIR_PURPLE.slice(5,7), 16)}, 0.2)`,
-                borderColor: WAYFAIR_PURPLE,
-                pointBackgroundColor: WAYFAIR_PURPLE,
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: WAYFAIR_PURPLE,
-                borderWidth: 3,
-            }]
+            labels: ['Translation', 'Brainstorming', 'Data analysis', 'Customer Comms', 'Writing assistance', 'Coding'],
+            datasets: [{ label: 'Mentions', data: [25, 13, 12, 10, 9, 9], backgroundColor: ['#57C377', '#6BCF87', '#7FDA97', '#92E5A7', '#A6EFB7', '#BAF8C7'], borderWidth: 1, borderRadius: 8 }]
         };
-        new Chart(document.getElementById('useCasesChart'), {
-            type: 'radar',
-            data: useCasesData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { color: GRID_COLOR },
-                        grid: { color: GRID_COLOR },
-                        pointLabels: {
-                            color: FONT_COLOR,
-                            font: { size: 14, weight: 'bold' }
-                        },
-                        ticks: {
-                            backdropColor: 'rgba(255, 255, 255, 0.75)',
-                            color: FONT_COLOR,
-                        }
-                    }
-                },
-                plugins: {
-                    ...SHARED_TOOLTIP_OPTIONS.plugins,
-                    legend: { display: false }
-                }
-            }
+
+        // --- Content Data ---
+        const departmentalInsights = [
+            { title: "CM", text: "Uniquely utilizing AI for complex data analysis, Looker calculations, and generating supplier FAQs.", icon: '📊' },
+            { title: "Desk/GPS", text: "Focused on leveraging AI for knowledge retrieval via Glean, assisting new hires, and automating support processes.", icon: '👥' },
+            { title: "CG/CGF", text: "Using AI to refine professional communication with suppliers and to efficiently code supplier information.", icon: '💼' },
+            { title: "SAM", text: "Leveraging AI primarily for translation and initial analysis of survey data to gain quick insights.", icon: '💬' },
+            { title: "ACQ", text: "Innovating with AI to overcome language barriers, developing custom translation solutions.", icon: '⚡️' },
+            { title: "HR/Academy", text: "Exploring AI for creative applications like brainstorming and generating reference images for vendors.", icon: '💡' }
+        ];
+        const successStories = [
+            { id: "story1", title: "Automated Scripting", text: "Used AI to generate custom scripts, automating repetitive tasks and saving significant time.", icon: '🤖' },
+            { id: "story2", title: "Cross-Cultural Communication", text: "A custom AI translator was built to overcome language barriers and improve global communications.", icon: '🌐' },
+            { id: "story3", title: "Advanced Data Insights", text: "AI proved instrumental in formulating complex queries, enabling deeper insights from business data.", icon: '📈' },
+            { id: "story4", title: "Email Summarization", text: "AI tools are efficiently summarizing lengthy email threads, highlighting key info and next steps.", icon: '✉️' },
+            { id: "story5", title: "SOP & Writing Polish", text: "Gemini is used to quickly summarize complex SOPs and polish written communications for clarity.", icon: '✍️' },
+            { id: "story6", title: "Efficient Knowledge Retrieval", text: "Glean has proven highly effective for new hires to quickly find relevant information, accelerating onboarding.", icon: '🔍' }
+        ];
+        const opportunities = [
+            { challenge: "Time-consuming report & presentation creation.", solution: "Automated generation of weekly reports and Google Slides drafts." },
+            { challenge: "Answering repetitive supplier and internal questions.", solution: "An intelligent knowledge base that handles basic queries instantly." },
+            { challenge: "Analyzing historical data to predict trends is complex.", solution: "AI models to identify supplier issues and summarize ad performance." },
+            { challenge: "Manual processing of meeting minutes & paperwork.", solution: "AI-driven transcription and summarization of meetings." }
+        ];
+
+        // --- Render Dynamic Content ---
+        const departmentalContainer = document.getElementById('departmentalInsights');
+        departmentalInsights.forEach(item => {
+            departmentalContainer.innerHTML += `
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
+                    <div class="text-4xl mb-4">${item.icon}</div>
+                    <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                    <p class="text-gray-600">${item.text}</p>
+                </div>`;
         });
 
-        const llmModal = document.getElementById('llmModal');
-        const modalContentDiv = document.getElementById('modalContent');
-        const modalLoadingDiv = document.getElementById('modalLoading');
-        const modalTitle = document.getElementById('modalTitle');
+        const storiesContainer = document.getElementById('successStories');
+        successStories.forEach(story => {
+            storiesContainer.innerHTML += `
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <div class="text-4xl mb-4">${story.icon}</div>
+                    <h3 class="text-xl font-bold mb-2">${story.title}</h3>
+                    <p class="text-gray-600 flex-grow mb-4">${story.text}</p>
+                    <button data-story-text="${story.text}" data-story-title="${story.title}" class="generate-details-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-auto">
+                        ✨ Generate More Details
+                    </button>
+                </div>`;
+        });
+        
+        const opportunitiesContainer = document.getElementById('opportunities');
+        opportunities.forEach(opp => {
+            opportunitiesContainer.innerHTML += `
+                <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
+                    <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
+                        <h4 class="font-bold text-lg text-red-500">Current Challenge</h4>
+                        <p>${opp.challenge}</p>
+                    </div>
+                    <div class="text-2xl font-bold" style="color: #7F187F;">&rarr;</div>
+                    <div class="md:col-span-2 card-gradient text-white p-4 rounded-lg shadow-md">
+                        <h4 class="font-bold text-lg">AI-Powered Solution</h4>
+                        <p>${opp.solution}</p>
+                    </div>
+                </div>`;
+        });
 
-        function openModal() {
-            llmModal.style.display = 'flex';
-        }
+        // --- Initialize Charts ---
+        new Chart(document.getElementById('frequencyChart'), {
+            type: 'doughnut', data: frequencyData, options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { position: 'bottom' }, tooltip: { ...SHARED_TOOLTIP_OPTIONS } } }
+        });
+        new Chart(document.getElementById('toolsChart'), {
+            type: 'bar', data: toolsData, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { ...SHARED_TOOLTIP_OPTIONS } } }
+        });
+        new Chart(document.getElementById('useCasesChart'), {
+            type: 'bar', data: useCasesData, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { ...SHARED_TOOLTIP_OPTIONS } } }
+        });
 
-        function closeModal() {
-            llmModal.style.display = 'none';
-            modalContentDiv.innerHTML = '';
-            modalLoadingDiv.classList.add('hidden');
-        }
+        // --- Modal Logic ---
+        const modal = document.getElementById('llmModal');
+        const modalTitleEl = document.getElementById('modalTitle');
+        const modalContentEl = document.getElementById('modalContent');
+        const closeModalBtn = document.getElementById('closeModal');
 
-        async function showStoryDetails(storyId) {
-            openModal();
-            modalTitle.textContent = "Generating Details...";
-            modalContentDiv.innerHTML = '';
-            modalLoadingDiv.classList.remove('hidden');
+        const showModal = () => modal.classList.add('flex');
+        const hideModal = () => modal.classList.remove('flex');
 
-            const storyText = document.getElementById(storyId).textContent;
-            const prompt = `Elaborate on the following AI success story from a company survey, providing more context, potential impact, and next steps in a concise paragraph: "${storyText}"`;
+        closeModalBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', hideModal);
 
-            let chatHistory = [];
-            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        document.querySelectorAll('.generate-details-btn').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const storyText = event.target.dataset.storyText;
+                const storyTitle = event.target.dataset.storyTitle;
+                
+                showModal();
+                modalTitleEl.textContent = "Generating Details...";
+                modalContentEl.innerHTML = `<div class="text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div><p class="text-gray-600 mt-2">Generating insights...</p></div>`;
 
-            const payload = { contents: chatHistory };
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const prompt = `Elaborate on the following AI success story from a company survey, providing more context, potential impact, and next steps in a concise paragraph: "${storyText}"`;
+                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                const apiKey = ""; // Not needed for gemini-2.0-flash in this environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    modalContentDiv.innerHTML = `<p>${text}</p>`;
-                    modalTitle.textContent = "Generated Details";
-                } else {
-                    modalContentDiv.innerHTML = '<p class="text-red-500">Error: Could not generate details. Please try again.</p>';
-                    modalTitle.textContent = "Error";
+                try {
+                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    const result = await response.json();
+                    if (result.candidates && result.candidates[0]?.content?.parts[0]?.text) {
+                        modalContentEl.textContent = result.candidates[0].content.parts[0].text;
+                        modalTitleEl.textContent = storyTitle;
+                    } else { throw new Error("Invalid response from AI."); }
+                } catch (error) {
+                    modalTitleEl.textContent = "Error";
+                    modalContentEl.textContent = `Failed to generate details. ${error.message}`;
                 }
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                modalContentDiv.innerHTML = `<p class="text-red-500">Error: Failed to connect to AI service. ${error.message}</p>`;
-                modalTitle.textContent = "Error";
-            } finally {
-                modalLoadingDiv.classList.add('hidden');
-            }
-        }
-
-        // Set dynamic header info
-        const today = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('lastUpdatedDate').textContent = today.toLocaleDateString('en-US', options);
-        document.getElementById('numSurveyTakers').textContent = 33; // This would be dynamically fetched in a live app
+            });
+        });
+        
+        // --- Set Dynamic Date ---
+        document.getElementById('lastUpdatedDate').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    });
     </script>
 </body>
 </html>
