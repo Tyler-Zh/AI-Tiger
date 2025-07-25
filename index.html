@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wayfair Shanghai - AI Utilization Infographic</title>
+    <title>Wayfair WGS - AI Utilization Infographic</title>
     
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -52,10 +52,10 @@
     <div class="container mx-auto p-4 md:p-8 max-w-7xl">
         <!-- Header -->
         <header class="text-center py-12">
-            <h1 class="text-4xl md:text-6xl font-extrabold" style="color: var(--wayfair-dark-purple);">The AI Revolution at Wayfair Shanghai</h1>
+            <h1 class="text-4xl md:text-6xl font-extrabold" style="color: var(--wayfair-dark-purple);">The AI Revolution at Wayfair WGS</h1>
             <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Insights from our 2025 Generative AI Utilization Survey reveal a workforce embracing innovation.</p>
             <div class="mt-6 text-sm md:text-base" style="color: var(--wayfair-light-gray);">
-                <p>Last Updated: <span id="lastUpdatedDate"></span> | Survey Takers: 50</p>
+                <p>Last Updated: <span id="lastUpdatedDate"></span> | Survey Takers: <span id="surveyTakersCount">58</span></p>
             </div>
         </header>
 
@@ -71,7 +71,7 @@
                 </div>
                 <div class="bg-white rounded-lg shadow-lg p-6 text-center h-full flex flex-col justify-center">
                     <h2 class="text-2xl font-bold mb-4">Overall Sentiment</h2>
-                    <div class="text-8xl font-black" style="color: var(--wayfair-yellow);">95%</div>
+                    <div class="text-8xl font-black" style="color: var(--wayfair-yellow);">96%</div>
                     <p class="text-2xl font-bold mt-2">Positive</p>
                     <p class="text-gray-600 mt-4">Employees are optimistic about embedding more AI into their work.</p>
                 </div>
@@ -141,7 +141,7 @@
         <!-- Footer -->
         <footer class="text-center py-12 mt-16 border-t border-gray-200">
             <h2 class="text-2xl font-bold" style="color: var(--wayfair-dark-purple);">Pioneering the Future, Together</h2>
-            <p class="mt-2 text-gray-600">Thank you for driving innovation. Your engagement with AI is shaping a more efficient future for Wayfair Shanghai.</p>
+            <p class="mt-2 text-gray-600">Thank you for driving innovation. Your engagement with AI is shaping a more efficient future for Wayfair WGS.</p>
         </footer>
     </div>
     
@@ -181,22 +181,25 @@
             cornerRadius: 8,
         };
 
-        // --- Chart Data ---
+        // --- REFRESHED Chart Data (from all 58 survey responses) ---
+        const surveyTakersCount = 58;
+        document.getElementById('surveyTakersCount').textContent = surveyTakersCount;
+
         const frequencyData = {
             labels: ['Daily', 'A few times a week', 'A few times a month'],
-            datasets: [{ data: [34, 12, 3], backgroundColor: [WAYFAIR_DARK_PURPLE, WAYFAIR_DARK_TEAL, WAYFAIR_YELLOW], borderColor: '#ffffff', borderWidth: 4, hoverOffset: 8 }]
+            datasets: [{ data: [41, 13, 4], backgroundColor: [WAYFAIR_DARK_PURPLE, WAYFAIR_DARK_TEAL, WAYFAIR_YELLOW], borderColor: '#ffffff', borderWidth: 4, hoverOffset: 8 }]
         };
         const toolsData = {
             labels: ['ChatGPT/GPT', 'Gemini', 'Glean', 'Deepseek', 'Other'],
-            datasets: [{ label: 'Mentions', data: [36, 22, 18, 4, 6], backgroundColor: [WAYFAIR_DARK_PURPLE, WAYFAIR_LIGHT_PURPLE, WAYFAIR_DARK_TEAL, WAYFAIR_LIGHT_TEAL, WAYFAIR_DARK_GRAY], borderWidth: 1, borderRadius: 8 }]
+            datasets: [{ label: 'Mentions', data: [43, 27, 21, 5, 8], backgroundColor: [WAYFAIR_DARK_PURPLE, WAYFAIR_LIGHT_PURPLE, WAYFAIR_DARK_TEAL, WAYFAIR_LIGHT_TEAL, WAYFAIR_DARK_GRAY], borderWidth: 1, borderRadius: 8 }]
         };
         const useCasesData = {
             labels: ['Translation', 'Brainstorming', 'Data analysis', 'Customer Comms', 'Writing assistance', 'Coding'],
-            datasets: [{ label: 'Mentions', data: [25, 13, 12, 10, 9, 9], backgroundColor: [WAYFAIR_DARK_TEAL, '#3491a2', '#5eabb8', '#84c6d1', '#a9e0e9', '#d0f5fa'], borderWidth: 1, borderRadius: 8 }]
+            datasets: [{ label: 'Mentions', data: [30, 16, 15, 13, 12, 11], backgroundColor: [WAYFAIR_DARK_TEAL, '#3491a2', '#5eabb8', '#84c6d1', '#a9e0e9', '#d0f5fa'], borderWidth: 1, borderRadius: 8 }]
         };
         const barriersData = {
             labels: ['Better Tools (GPT-4)', 'More Training', 'Clearer Guidelines', 'More Time to Learn', 'Tool Integration'],
-            datasets: [{ label: 'Mentions', data: [28, 21, 15, 12, 9], backgroundColor: [WAYFAIR_RED, '#d15256', '#d9787b', '#e19ea0', '#e9c4c5'], borderWidth: 1, borderRadius: 8 }]
+            datasets: [{ label: 'Mentions', data: [35, 27, 19, 15, 11], backgroundColor: [WAYFAIR_RED, '#d15256', '#d9787b', '#e19ea0', '#e9c4c5'], borderWidth: 1, borderRadius: 8 }]
         };
 
         // --- SVG Icons ---
@@ -225,12 +228,12 @@
             { title: "HR/Academy", text: "Exploring AI for creative applications like brainstorming and generating reference images for vendors.", icon: icons.lightbulb }
         ];
         const successStories = [
-            { id: "story1", title: "Automated Scripting", text: "Used AI to generate custom scripts, automating repetitive tasks and saving significant time.", icon: icons.cpu, detail: "This success story highlights a significant leap in operational efficiency. By feeding plain-language descriptions of repetitive data-handling tasks into an AI model, employees were able to generate functional Tamper Monkey and VBA scripts without needing deep coding expertise. The impact was immediate, reducing hours of manual work to mere minutes and freeing up team members to focus on more strategic, high-value activities. The next step is to create a shared library of these AI-generated scripts for wider team use." },
-            { id: "story2", title: "Cross-Cultural Communication", text: "A custom AI translator was built to overcome language barriers and improve global communications.", icon: icons.globe, detail: "To address communication gaps between international teams, a specialized glossary of Wayfair-specific jargon, acronyms, and technical terms was compiled. This glossary was then used to fine-tune a large language model, creating a powerful, context-aware translation tool. The impact has been a marked reduction in misunderstandings and faster, clearer communication. Future plans involve integrating this tool directly into internal chat platforms." },
-            { id: "story3", title: "Advanced Data Insights", text: "AI proved instrumental in formulating complex queries, enabling deeper insights from business data.", icon: icons.trendingUp, detail: "Analysts are now using natural language to ask complex questions about business data. The AI then translates these questions into precise Looker or SQL queries. This has democratized data access, allowing less technical users to uncover trends and insights that were previously hidden. The primary impact is faster, data-driven decision-making. Next steps include training the AI on more complex schemas to handle even more advanced analytical requests." },
-            { id: "story4", title: "Email Summarization", text: "AI tools are efficiently summarizing lengthy email threads, highlighting key info and next steps.", icon: icons.mail, detail: "By pasting long, convoluted email chains into an AI tool, employees can receive instant, concise summaries. The AI identifies key decisions, action items, and deadlines, transforming information overload into a clear, actionable brief. This has significantly improved project tracking and accountability. The next phase is to explore browser extensions that can perform this summarization directly within the email client." },
-            { id: "story5", title: "SOP & Writing Polish", text: "Gemini is used to quickly summarize complex SOPs and polish written communications for clarity.", icon: icons.edit, detail: "This application serves a dual purpose: quickly onboarding employees by summarizing lengthy Standard Operating Procedures, and elevating the quality of external communications. The AI helps refine grammar, tone, and clarity, ensuring all written materials meet a high standard of professionalism. The impact is a more consistent brand voice and faster training. The team is now looking to create pre-defined style templates for the AI to follow." },
-            { id: "story6", title: "Efficient Knowledge Retrieval", text: "Glean has proven highly effective for new hires to quickly find relevant information, accelerating onboarding.", icon: icons.search, detail: "New hires are leveraging Glean's AI-powered search to ask questions in natural language and receive direct answers sourced from internal documentation. This self-service approach has drastically reduced the time it takes for new team members to become productive and has lessened the burden on senior staff for basic questions. The next step is to proactively identify knowledge gaps based on failed searches and create new documentation to fill them." }
+            { id: "story1", name: "Ashley Guo", department: "ACQ", title: "Custom AI Translator", text: "Built a custom translator in Gemini using a glossary of Wayfair-specific terms to improve cross-team communication.", icon: icons.globe, detail: "Ashley's initiative directly addresses a key business challenge: ensuring clarity in a multilingual environment. By compiling a specialized glossary and fine-tuning an AI model, she created a tool that understands Wayfair's unique terminology. This has led to fewer misunderstandings in cross-team communications and faster project alignment. The next step is to explore integrating this specialized translation model into internal communication platforms for real-time use." },
+            { id: "story2", name: "Chengcheng", department: "Desk/GPS", title: "Automated Scripting", text: "Used AI to generate a Tampermonkey script, automating a repetitive daily task and saving significant time.", icon: icons.cpu, detail: "Chengcheng's work is a prime example of leveraging AI for direct productivity gains. By describing a manual, repetitive task to an AI, a custom Tampermonkey script was generated. This script now automates the process, saving valuable time each day and reducing the risk of manual error. This success case serves as a model for other teams to identify and automate their own repetitive workflows." },
+            { id: "story3", name: "Ziyue (Zoey) Li", department: "CM", title: "Complex Formula Helper", text: "Utilized AI to understand and troubleshoot complex Google Sheets formulas, improving data accuracy and efficiency.", icon: icons.search, detail: "Zoey's application of AI demonstrates its power as an advanced analytical assistant. Instead of spending hours deciphering complex nested formulas in spreadsheets, she uses AI to get instant explanations and suggestions for improvement. This not only saves time but also empowers employees to work more confidently with complex data, leading to more reliable and accurate reporting." },
+            { id: "story4", name: "Yichao (Alex) Wang", department: "Desk/GPS", title: "Code Generation & Debugging", text: "Leveraged AI for writing and debugging Python code, significantly speeding up development cycles.", icon: icons.zap, detail: "Alex's use case shows AI's role as a co-developer. By using AI to generate boilerplate code, suggest solutions to programming challenges, and identify bugs, he has been able to accelerate the development process for internal tools. This leads to faster project completion and allows for more iterative, responsive development based on team needs." },
+            { id: "story5", name: "Yilin Zhang", department: "CG/CGF", title: "Supplier Communication", text: "Employs AI to draft and polish emails for supplier communication, ensuring a professional and consistent tone.", icon: icons.mail, detail: "Yilin's approach focuses on enhancing the quality and consistency of external communications. By using AI to draft initial responses and refine the language of emails to suppliers, she ensures that all communication is clear, professional, and aligns with Wayfair's brand voice. This improves partner relationships and reduces the time spent on composing messages from scratch." },
+            { id: "story6", name: "Jiaqi (Kiki) Chen", department: "CM", title: "Advanced Data Analysis", text: "Uses AI to assist with writing complex Looker calculations and SQL queries for deeper data insights.", icon: icons.trendingUp, detail: "Kiki's work highlights how AI can democratize data analysis. By translating natural language questions into precise SQL queries or Looker calculations, AI empowers team members to extract valuable insights from data without needing to be expert coders. This leads to more informed, data-driven strategies and a more analytically capable team." }
         ];
         const opportunities = [
             { challenge: "Time-consuming report & presentation creation.", solution: "Automated generation of weekly reports and Google Slides drafts." },
@@ -266,6 +269,7 @@
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
                     <div class="w-10 h-10 mb-4" style="color: var(--wayfair-dark-purple);">${story.icon}</div>
                     <h3 class="text-xl font-bold mb-2">${story.title}</h3>
+                    <p class="text-sm font-semibold text-gray-500 mb-2">By: ${story.name} (${story.department})</p>
                     <p class="text-gray-600 flex-grow mb-4">${story.text}</p>
                     <button data-story-detail="${story.detail}" data-story-title="${story.title}" class="generate-details-btn wayfair-btn text-white font-bold py-2 px-4 rounded-lg mt-auto">
                         ✨ Show More Details
